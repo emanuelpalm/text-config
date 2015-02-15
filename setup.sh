@@ -1,5 +1,6 @@
 #!/bin/zsh
 
+# Create symbolic link in parent directory to file relative to current.
 function link {
     SRC=`pwd`/$1
     DEST=../.$1
@@ -9,10 +10,14 @@ function link {
     fi
 }
 
-link tmux.conf
-link vimrc
-link zshrc
+CONFIG_FILES=(
+    'tmux.conf'
+    'vimrc'
+    'zshrc'
+)
 
-# ln -s `pwd`/tmux.conf ../.tmux.conf
-# ln -s `pwd`/vimrc ../.vimrc
-# ln -s `pwd`/zshrc ../.zshrc
+for FILE in $CONFIG_FILES;
+do
+    link $FILE;
+done
+
