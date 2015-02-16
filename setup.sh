@@ -20,7 +20,7 @@ function install_os_packages {
             report "Updating package library ..."
             apt-get update > /dev/null
             report "Installing packages ..."
-            apt-get install -y git vim > /dev/null
+            apt-get install -y git vim tmux zsh > /dev/null
             ;;
         *)
             panic "The platform \"$1\" is not supported."
@@ -41,7 +41,9 @@ function panic {
 
 # Installs various plaform-independent packages.
 function install_packages {
-    echo "..."
+    clone_repo_to "https://github.com/gmarik/Vundle.vim.git"      "$HOME/.vim/bundle/Vundle.vim"
+    clone_repo_to "https://github.com/robbyrussell/oh-my-zsh.git" "$HOME/.oh-my-zsh"
+    clone_repo_to "https://github.com/powerline/fonts.git"        "$HOME/.powerline-fonts"
 }
 
 # Clones repository at $1 to local folder $2.
@@ -96,7 +98,14 @@ function create_symbolic_link_to {
 
 # Configures installed packages. 
 function configure_packages {
-    echo "..."
+    # Vundle plugins.
+    vim +PluginInstall +qall
+
+    # Oh My Zsh.
+    chsh -s `/usr/bin/env zsh`
+
+    # Powerline fonts.
+    cd "$HOME/.powerline-fonts" && ./install.sh
 }
 
 # Ensures directory $1 exists.
