@@ -74,6 +74,13 @@ set novisualbell
 set t_vb=
 set tm=500
 
+" Font
+if has("gui_running")
+    if has("gui_gtk2")
+        set guifont=Ubuntu\ Mono\ derivative\ Powerline\ 13
+    endif
+endif
+
 " NERDTree
 map § :NERDTreeToggle<return>
 if has("gui_running")
