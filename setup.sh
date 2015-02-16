@@ -17,7 +17,7 @@ function install_os_packages {
             report "Installing homebrew ..."
             ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
             report "Updating package library ..."
-            brew update
+            brew update > /dev/null
             report "Installing packages ..."
             brew install git macvim tmux zsh > /dev/null
             ;;
