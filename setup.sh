@@ -57,7 +57,14 @@ function clone_repo_to {
     then
         panic "Git not installed."
     fi
-    git clone $1 $2
+    if [[ ! -e $2 ]];
+    then
+        git clone $1 $2
+        if [[ $? != "0" ]];
+        then
+            panic "Failed to git clone \"$1\"."
+        fi
+    fi
 }
 
 # Ensures directory $1 exists.
