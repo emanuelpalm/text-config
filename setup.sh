@@ -57,7 +57,7 @@ function clone_repo_to {
     then
         panic "Git not installed."
     fi
-    if [[ ! -e $2 ]];
+    if [[ ! -a $2 ]];
     then
         git clone $1 $2
         if [[ $? != "0" ]];
