@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 # Default repository.
 SOURCE_REPO='git@github.com:emanuelpalm/text-config.git'
