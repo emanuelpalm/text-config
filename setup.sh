@@ -6,6 +6,7 @@ CONFIG_FILES=`find -iname '*rc' && find -iname '*.conf'`
 # Main function. Executed at bottom of file.
 function main {
     ensure_dir      $DOWNLOAD_DIR
+    setup_ostype    $OSTYPE
     create_links_to $CONFIG_FILES ../
 
     #download "http://static.thegeekstuff.com/wp-content/themes/thesis_18/custom/images/thegeekstuff.gif" $DOWNLOAD_DIR
@@ -24,6 +25,21 @@ function ensure_dir {
 function panic {
     echo -e "\e[31m!!\e[0m $1"
     exit 1
+}
+
+# Executes setup for OS type $1, if supported.
+function setup_ostype {
+    case "$1" in
+        "darwin")
+            # TODO
+            ;;
+        "linux-gnu")
+            # TODO
+            ;;
+        *)
+            panic "The OS type \"$1\" is not supported."
+            ;;
+    esac
 }
 
 # Creates symbolik links to given files $1 in directory $2.
