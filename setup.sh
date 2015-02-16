@@ -78,7 +78,7 @@ function ensure_dir {
 
 # Creates symbolik links to given files $1 in directory $2.
 function create_links_to {
-    echo $1 | while read LINE;
+    for LINE in $1;
     do
         create_link_to $LINE $2
     done
