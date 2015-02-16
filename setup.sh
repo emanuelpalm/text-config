@@ -10,10 +10,10 @@ fi
 # Main function. Executed at bottom of file.
 function main {
     # Download packages and install platform-specific utilities.
-    setup_plaform   $OSTYPE
+    setup_plaform   "$OSTYPE"
 
     # Download text-config repository, if not already present.
-    SOURCE_REPO=$1
+    SOURCE_REPO="$1"
     TARGET_REPO_DIR="$(cd && pwd)/.text-config"
     clone_repo_to   "$SOURCE_REPO" "$TARGET_REPO_DIR"
 
