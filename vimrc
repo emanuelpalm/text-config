@@ -22,6 +22,7 @@ Plugin 'tomasr/molokai.git'
 
 " Syntax highlightning.
 Plugin 'plasticboy/vim-markdown.git'
+Plugin 'rodjek/vim-puppet.git'
 Plugin 'wting/rust.vim'
 
 call vundle#end()
