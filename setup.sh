@@ -78,7 +78,7 @@ function download {
     TARGET=$2`basename $1`
     if [[ -e $TARGET ]];
     then
-        echo "> '$TARGET' already downloaded."
+        report "\"$TARGET\" already downloaded."
         return
     fi
     curl -I $SOURCE > /dev/null 2&> /dev/null
