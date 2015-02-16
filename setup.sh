@@ -2,7 +2,7 @@
 
 # Default repository.
 SOURCE_REPO='git@github.com:emanuelpalm/text-config.git'
-if [[ -z $1 ]];
+if [[ ! -z "$1" ]];
 then
     SOURCE_REPO=$1
 fi
