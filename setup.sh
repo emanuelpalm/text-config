@@ -6,7 +6,7 @@ CONFIG_FILES=`find -iname '*rc' && find -iname '*.conf'`
 # Main function. Executed at bottom of file.
 function main {
     ensure_dir      $DOWNLOAD_DIR
-    setup_ostype    $OSTYPE
+    setup_plaform   $OSTYPE
     create_links_to $CONFIG_FILES ../
 
     #download "http://static.thegeekstuff.com/wp-content/themes/thesis_18/custom/images/thegeekstuff.gif" $DOWNLOAD_DIR
@@ -28,16 +28,17 @@ function panic {
 }
 
 # Executes setup for OS type $1, if supported.
-function setup_ostype {
+function setup_plaform {
     case "$1" in
         "darwin")
             # TODO
             ;;
         "linux-gnu")
-            # TODO
+            apt-get update
+            apt-get install git vim
             ;;
         *)
-            panic "The OS type \"$1\" is not supported."
+            panic "The platform \"$1\" is not supported."
             ;;
     esac
 }
