@@ -40,7 +40,7 @@ function setup_plaform {
             report "Updating package library ..."
             apt-get update > /dev/null
             report "Installing packages ..."
-            apt-get install git vim > /dev/null
+            apt-get install -y git vim > /dev/null
             ;;
         *)
             panic "The platform \"$1\" is not supported."
