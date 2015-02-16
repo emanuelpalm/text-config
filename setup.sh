@@ -1,30 +1,31 @@
 #!/usr/bin/env sh
 
-DOWNLOAD_DIR="downloads/"
-CONFIG_FILES=`find -iname '*rc' && find -iname '*.conf'`
+# Default repository.
+SOURCE_REPO='git@github.com:emanuelpalm/text-config.git'
+if [[ -z $1 ]];
+then
+    SOURCE_REPO=$1
+fi
 
 # Main function. Executed at bottom of file.
 function main {
-    ensure_dir      $DOWNLOAD_DIR
+    # Download packages and install platform-specific utilities.
     setup_plaform   $OSTYPE
-    create_links_to $CONFIG_FILES ../
+
+    SOURCE_REPO=$1
+    TARGET_REPO_DIR='~/.text-config'
+    clone_repo_to   $SOURCE_REPO $TARGET_REPO_DIR
+
+    # Prepare directories.
+    DOWNLOAD_DIR="$TARGET_REPO_DIR/downloads/"
+    ensure_dir      $TARGET_REPO_DIR
+    ensure_dir      $DOWNLOAD_DIR
+
+    # Create symbolic links to various configuration files.
+    CONFIG_FILES=`find -iname "$TARGET_REPO_DIR/*rc" && find -iname "$TARGET_REPO_DIR/*.conf"`
+    create_links_to $CONFIG_FILES $TARGET_REPO_DIR
 
     #download "http://static.thegeekstuff.com/wp-content/themes/thesis_18/custom/images/thegeekstuff.gif" $DOWNLOAD_DIR
-}
-
-# Ensures directory $1 exists.
-function ensure_dir {
-    mkdir -p $1
-    if [[ $? != "0" ]];
-    then
-        panic "Failed to ensure directory \"$1\". exists"
-    fi
-}
-
-# Panics with message $1, terminating script.
-function panic {
-    echo -e "\e[31m!!\e[0m $1"
-    exit 1
 }
 
 # Executes setup for OS type $1, if supported.
@@ -41,6 +42,31 @@ function setup_plaform {
             panic "The platform \"$1\" is not supported."
             ;;
     esac
+}
+
+# Panics with message $1, terminating script.
+function panic {
+    echo -e "\e[31m!!\e[0m $1"
+    exit 1
+}
+
+# Clones repository at $1 to local folder $2.
+function clone_repo_to {
+    which git
+    if [[ $? != "0" ]];
+    then
+        panic "Git not installed."
+    fi
+    git clone $1 $2
+}
+
+# Ensures directory $1 exists.
+function ensure_dir {
+    mkdir -p $1
+    if [[ $? != "0" ]];
+    then
+        panic "Failed to ensure directory \"$1\". exists"
+    fi
 }
 
 # Creates symbolik links to given files $1 in directory $2.
@@ -92,5 +118,5 @@ function download {
     fi
 }
 
-main
+main $SOURCE_REPO
 
