@@ -106,34 +106,8 @@ function configure_packages {
 
     # Powerline fonts.
     cd "$HOME/.powerline-fonts" && ./install.sh
-}
 
-# Ensures directory $1 exists.
-function ensure_dir {
-    mkdir -p $1
-    if [[ $? != "0" ]];
-    then
-        panic "Failed to ensure directory \"$1\". exists"
-    fi
-}
 
-# Downloads file at $1 into folder $2.
-function download {
-    SOURCE=$1
-    TARGET=$2`basename $1`
-    if [[ -e $TARGET ]];
-    then
-        report "\"$TARGET\" already downloaded."
-        return
-    fi
-    curl -I $SOURCE > /dev/null 2&> /dev/null
-    if [[ $? == "0" ]];
-    then
-        report "Downloading to $TARGET ..."
-        curl -O $SOURCE > /dev/null
-    else
-        panic "Failed to download $TARGET."
-    fi
 }
 
 SOURCE_REPO='https://github.com/emanuelpalm/text-config.git'
