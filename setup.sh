@@ -14,7 +14,12 @@ function main {
 function install_os_packages {
     case "$1" in
         "darwin")
-            # TODO
+            report "Installing homebrew ..."
+            ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+            report "Updating package library ..."
+            brew update
+            report "Installing packages ..."
+            brew install git macvim tmux zsh > /dev/null
             ;;
         "linux-gnu")
             report "Updating package library ..."
