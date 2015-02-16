@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env sh
 
 DOWNLOAD_DIR="downloads/"
 CONFIG_FILES=`find -iname '*rc' && find -iname '*.conf'`
