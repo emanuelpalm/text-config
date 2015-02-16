@@ -1,37 +1,17 @@
 #!/usr/bin/env bash
 
-# Default repository.
-SOURCE_REPO='git@github.com:emanuelpalm/text-config.git'
-if [[ ! -z "$1" ]];
-then
-    SOURCE_REPO=$1
-fi
-
-# Main function. Executed at bottom of file.
+# Installs packages for OS $1 and configurations fom GIT repository $2.
 function main {
-    # Download packages and install platform-specific utilities.
-    setup_plaform   "$OSTYPE"
-
-    # Download text-config repository, if not already present.
-    SOURCE_REPO="$1"
-    TARGET_REPO_DIR="$(cd && pwd)/.text-config"
-    clone_repo_to   "$SOURCE_REPO" "$TARGET_REPO_DIR"
-
-    # Prepare directories.
-    DOWNLOAD_DIR="$TARGET_REPO_DIR/downloads"
-    ensure_dir      "$DOWNLOAD_DIR"
-
-    # Create symbolic links to various configuration files.
-    CONFIG_FILES=`find $TARGET_REPO_DIR -iname "*rc" && find $TARGET_REPO_DIR -iname "*.conf"`
-    create_links_to "$CONFIG_FILES" "$(cd && pwd)"
-
-    #download "http://static.thegeekstuff.com/wp-content/themes/thesis_18/custom/images/thegeekstuff.gif" $DOWNLOAD_DIR
+    install_os_packages "$1"
+    install_packages
+    install_configurations_from "$2"
+    configure_packages
 
     report "Done."
 }
 
-# Executes setup for OS type $1, if supported.
-function setup_plaform {
+# Executes setup for OS of type $1, if supported.
+function install_os_packages {
     case "$1" in
         "darwin")
             # TODO
@@ -48,10 +28,20 @@ function setup_plaform {
     esac
 }
 
+# Reports message $1.
+function report {
+    echo -e "\e[34m>\e[0m $1"
+}
+
 # Panics with message $1, terminating script.
 function panic {
     echo -e "\e[31m!!\e[0m $1"
     exit 1
+}
+
+# Installs various plaform-independent packages.
+function install_packages {
+    echo "..."
 }
 
 # Clones repository at $1 to local folder $2.
@@ -71,25 +61,25 @@ function clone_repo_to {
     fi
 }
 
-# Ensures directory $1 exists.
-function ensure_dir {
-    mkdir -p $1
-    if [[ $? != "0" ]];
-    then
-        panic "Failed to ensure directory \"$1\". exists"
-    fi
+# Installs configuration files from repository $1.
+function install_configurations_from {
+    TARGET_REPO_DIR="$HOME/.text-config"
+    CONFIG_FILES=`find $TARGET_REPO_DIR -iname "*rc" && find $TARGET_REPO_DIR -iname "*.conf"`
+
+    clone_repo_to "$1" "$TARGET_REPO_DIR"
+    create_symbolic_links_to "$CONFIG_FILES" "$HOME"
 }
 
 # Creates symbolik links to given files $1 in directory $2.
-function create_links_to {
+function create_symbolic_links_to {
     for LINE in $1;
     do
-        create_link_to $LINE $2
+        create_symbolic_link_to $LINE $2
     done
 }
 
 # Creates symbolik link for $1 at $2.
-function create_link_to {
+function create_symbolic_link_to {
     SOURCE=$1
     TARGET=$2/.`basename $1`
     if [[ ! -a $TARGET ]];
@@ -104,9 +94,18 @@ function create_link_to {
     fi
 }
 
-# Reports message $1.
-function report {
-    echo -e "\e[34m>\e[0m $1"
+# Configures installed packages. 
+function configure_packages {
+    echo "..."
+}
+
+# Ensures directory $1 exists.
+function ensure_dir {
+    mkdir -p $1
+    if [[ $? != "0" ]];
+    then
+        panic "Failed to ensure directory \"$1\". exists"
+    fi
 }
 
 # Downloads file at $1 into folder $2.
@@ -128,5 +127,11 @@ function download {
     fi
 }
 
-main $SOURCE_REPO
+SOURCE_REPO='https://github.com/emanuelpalm/text-config.git'
+if [[ ! -z "$1" ]];
+then
+    SOURCE_REPO="$1"
+fi
+
+main "$OSTYPE" "$SOURCE_REPO"
 
