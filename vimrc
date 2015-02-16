@@ -78,6 +78,8 @@ set tm=500
 if has("gui_running")
     if has("gui_gtk2")
         set guifont=Ubuntu\ Mono\ derivative\ Powerline\ 13
+    elseif has("gui_macvim")
+        set guifont=Ubuntu\ Mono\ derivative\ Powerline:h13
     endif
 endif
 
