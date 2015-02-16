@@ -35,8 +35,8 @@ function setup_plaform {
             # TODO
             ;;
         "linux-gnu")
-            apt-get update
-            apt-get install git vim
+            apt-get update > /dev/null
+            apt-get install git vim > /dev/null
             ;;
         *)
             panic "The platform \"$1\" is not supported."
@@ -52,7 +52,7 @@ function panic {
 
 # Clones repository at $1 to local folder $2.
 function clone_repo_to {
-    which git
+    which git > /dev/null
     if [[ $? != "0" ]];
     then
         panic "Git not installed."
