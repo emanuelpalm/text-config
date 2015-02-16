@@ -12,18 +12,18 @@ function main {
     # Download packages and install platform-specific utilities.
     setup_plaform   $OSTYPE
 
+    # Download text-config repository, if not already present.
     SOURCE_REPO=$1
-    TARGET_REPO_DIR='~/.text-config'
-    clone_repo_to   $SOURCE_REPO $TARGET_REPO_DIR
+    TARGET_REPO_DIR="$(cd && pwd)/.text-config"
+    clone_repo_to   "$SOURCE_REPO" "$TARGET_REPO_DIR"
 
     # Prepare directories.
-    DOWNLOAD_DIR="$TARGET_REPO_DIR/downloads/"
-    ensure_dir      $TARGET_REPO_DIR
-    ensure_dir      $DOWNLOAD_DIR
+    DOWNLOAD_DIR="$TARGET_REPO_DIR/downloads"
+    ensure_dir      "$DOWNLOAD_DIR"
 
     # Create symbolic links to various configuration files.
     CONFIG_FILES=`find $TARGET_REPO_DIR -iname "*rc" && find $TARGET_REPO_DIR -iname "*.conf"`
-    create_links_to $CONFIG_FILES $TARGET_REPO_DIR
+    create_links_to "$CONFIG_FILES" "$(cd && pwd)"
 
     #download "http://static.thegeekstuff.com/wp-content/themes/thesis_18/custom/images/thegeekstuff.gif" $DOWNLOAD_DIR
 }
@@ -86,9 +86,8 @@ function create_links_to {
 
 # Creates symbolik link for $1 at $2.
 function create_link_to {
-    LINK=`basename $1`
-    SOURCE=`pwd`/$LINK
-    TARGET=$2.$LINK
+    SOURCE=$1
+    TARGET=$2/.`basename $1`
     if [[ ! -a $TARGET ]];
     then
         ln -s $SOURCE $TARGET
