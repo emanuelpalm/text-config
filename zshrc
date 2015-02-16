@@ -12,7 +12,7 @@ source $ZSH/oh-my-zsh.sh
 
 if [[ `uname` == "Darwin" ]];
 then
-    which mvim
+    which mvim > /dev/null
     if [[ $? == "0" ]];
     then
         alias vim="mvim -v"
