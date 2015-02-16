@@ -13,9 +13,13 @@ function main {
 # Executes setup for OS of type $1, if supported.
 function install_os_packages {
     case "$1" in
-            report "Installing homebrew ..."
-            ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
         darwin*)
+            which brew > /dev/null
+            if [[ $? != "0" ]];
+            then
+                report "Installing homebrew ..."
+                ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+            fi
             report "Updating package library ..."
             brew update > /dev/null
             report "Installing packages ..."
