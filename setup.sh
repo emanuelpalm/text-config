@@ -26,6 +26,8 @@ function main {
     create_links_to "$CONFIG_FILES" "$(cd && pwd)"
 
     #download "http://static.thegeekstuff.com/wp-content/themes/thesis_18/custom/images/thegeekstuff.gif" $DOWNLOAD_DIR
+
+    report "Done."
 }
 
 # Executes setup for OS type $1, if supported.
@@ -35,7 +37,9 @@ function setup_plaform {
             # TODO
             ;;
         "linux-gnu")
+            report "Updating package library ..."
             apt-get update > /dev/null
+            report "Installing packages ..."
             apt-get install git vim > /dev/null
             ;;
         *)
