@@ -22,7 +22,7 @@ function main {
     ensure_dir      $DOWNLOAD_DIR
 
     # Create symbolic links to various configuration files.
-    CONFIG_FILES=`find -iname "$TARGET_REPO_DIR/*rc" && find -iname "$TARGET_REPO_DIR/*.conf"`
+    CONFIG_FILES=`find $TARGET_REPO_DIR -iname "*rc" && find $TARGET_REPO_DIR -iname "*.conf"`
     create_links_to $CONFIG_FILES $TARGET_REPO_DIR
 
     #download "http://static.thegeekstuff.com/wp-content/themes/thesis_18/custom/images/thegeekstuff.gif" $DOWNLOAD_DIR
