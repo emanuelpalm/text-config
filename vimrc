@@ -32,7 +32,7 @@ filetype plugin indent on
 set modeline
 
 set undofile
-set undodir=$HOME/.vim/undo//
+set undodir=$HOME/.vim/undo/
 set undolevels=1000
 set undoreload=10000
 set updatecount=250
