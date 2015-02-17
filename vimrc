@@ -64,7 +64,7 @@ set incsearch
 set ignorecase
 set smartcase
 set autoindent
-set textwidth=79
+set textwidth=99
 set formatoptions=c,q,r,t
 set splitright
 set splitbelow
