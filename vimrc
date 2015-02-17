@@ -5,7 +5,7 @@ set filetype=off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-Plugin 'gmarik/Vundle.vim'
+Plugin 'gmarik/Vundle.vim.git'
 
 " Productivity.
 Plugin 'airblade/vim-gitgutter.git'
@@ -23,7 +23,7 @@ Plugin 'tomasr/molokai.git'
 " Syntax highlightning.
 Plugin 'plasticboy/vim-markdown.git'
 Plugin 'rodjek/vim-puppet.git'
-Plugin 'wting/rust.vim'
+Plugin 'wting/rust.vim.git'
 
 call vundle#end()
 filetype plugin indent on
