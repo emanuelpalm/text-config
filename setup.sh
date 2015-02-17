@@ -110,9 +110,6 @@ function configure_packages {
     # Vundle plugins.
     vim +PluginInstall +qall
 
-    # Oh My Zsh.
-    chsh -s `/usr/bin/env zsh`
-
     # Powerline fonts.
     cd "$HOME/.powerline-fonts" && ./install.sh
 
