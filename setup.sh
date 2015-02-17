@@ -113,11 +113,6 @@ function configure_packages {
     # Powerline fonts.
     cd "$HOME/.powerline-fonts" && ./install.sh
 
-    which gconftool-2
-    if [[ $? == "0" ]];
-    then
-        gconftool-2 --set /apps/gnome-terminal/profiles/Default/font --type string "Ubuntu Mono derivative Powerline 13"
-    fi
 }
 
 SOURCE_REPO='https://github.com/emanuelpalm/text-config.git'
