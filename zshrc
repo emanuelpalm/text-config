@@ -19,3 +19,5 @@ then
     fi
 fi
 
+alias tmux="tmux -2"
+
