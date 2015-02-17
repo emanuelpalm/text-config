@@ -77,9 +77,9 @@ set tm=500
 " Font
 if has("gui_running")
     if has("gui_gtk2")
-        set guifont=Ubuntu\ Mono\ derivative\ Powerline\ 13
+        set guifont=Inconsolata-dz\ for\ Powerline\ Medium\ 11
     elseif has("gui_macvim")
-        set guifont=Ubuntu\ Mono\ derivative\ Powerline:h13
+        set guifont=Inconsolata-dz\ for\ Powerline\ Medium:h11
     endif
 endif
 
