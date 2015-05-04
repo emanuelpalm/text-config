@@ -78,9 +78,9 @@ set tm=500
 " Font
 if has("gui_running")
     if has("gui_gtk2")
-        set guifont=Inconsolata-dz\ for\ Powerline\ Medium\ 11
+        set guifont=Inconsolata-dz\ for\ Powerline\ Medium\ 10
     elseif has("gui_macvim")
-        set guifont=Inconsolata-dz\ for\ Powerline\ Medium:h11
+        set guifont=Inconsolata-dz\ for\ Powerline\ Medium:h10
     endif
 endif
 
