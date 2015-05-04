@@ -16,6 +16,7 @@ Plugin 'kien/ctrlp.vim.git'
 Plugin 'scrooloose/syntastic.git'
 Plugin 'edkolev/tmuxline.vim.git'
 Plugin 'christoomey/vim-tmux-navigator.git'
+Plugin 'rhysd/vim-clang-format.git'
 
 " Color themes.
 Plugin 'tomasr/molokai.git'
@@ -100,4 +101,10 @@ if !has("gui_running")
     let g:rehash256 = 1 " Molokai theme 256 color adjustment.
     set t_Co=256
 endif
+
+" Syntactic
+let g:syntastic_cpp_compiler = "clang++"
+let g:syntastic_cpp_compiler_options = "-std=c++11 -stdlib=libc++ -Wall -Wpedantic -Wextra"
+let g:syntastic_c_compiler = "clang"
+let g:syntastic_c_compiler_options = "-std=c11 -Wall -Wpedantic -Wextra"
 
