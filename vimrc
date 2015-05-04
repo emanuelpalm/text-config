@@ -1,5 +1,5 @@
 set nocompatible
-set filetype=off
+filetype off
 
 " { Vundle plugins.
 set rtp+=~/.vim/bundle/Vundle.vim
