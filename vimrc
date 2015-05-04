@@ -86,6 +86,7 @@ endif
 
 " NERDTree
 map § :NERDTreeToggle<return>
+let NERDTreeIgnore=['\.o$', '\~$']
 if has("gui_running")
     set guioptions-=T
     set guioptions+=e
