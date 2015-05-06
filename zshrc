@@ -1,5 +1,8 @@
 export ZSH=~/.oh-my-zsh
 
+HISTFILE=~/.histfile
+HISTSIZE=1000
+SAVEHIST=1000
 ZSH_THEME="agnoster"
 DISABLE_AUTO_TITLE="true"
 ENABLE_CORRECTION="false"
@@ -21,3 +24,8 @@ fi
 
 alias tmux="tmux -2"
 
+unsetopt autocd
+bindkey -v
+zstyle :compinstall filename '/home/emanuel/.zshrc'
+autoload -Uz compinit
+compinit
