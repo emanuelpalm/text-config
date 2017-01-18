@@ -1,13 +1,13 @@
 set nocompatible
-filetype off
 
-" { Vundle plugins.
+" Plugins
+filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'gmarik/Vundle.vim.git'
 
-" Productivity.
+"" Productivity
 Plugin 'airblade/vim-gitgutter.git'
 Plugin 'vim-airline/vim-airline.git'
 Plugin 'vim-airline/vim-airline-themes.git'
@@ -19,63 +19,48 @@ Plugin 'edkolev/tmuxline.vim.git'
 Plugin 'christoomey/vim-tmux-navigator.git'
 Plugin 'rhysd/vim-clang-format.git'
 
-" Color themes.
+"" Color Themes
 Plugin 'altercation/vim-colors-solarized.git'
 Plugin 'tomasr/molokai.git'
 
-" Language support.
+"" Language Support
 Plugin 'plasticboy/vim-markdown.git'
 Plugin 'rodjek/vim-puppet.git'
 Plugin 'rust-lang/rust.vim'
 
 call vundle#end()
 filetype plugin indent on
-" }
 
-set modeline
+" General Settings
 
-set undofile
-set undodir=$HOME/.vim/undo/
-set undolevels=1000
-set undoreload=10000
-set updatecount=250
-set autoread
-set history=1000
-
-set background=dark
-set number
-set showcmd
-set ruler
-set colorcolumn=80,100
-
-syntax on
+"" Appearence
 colorscheme solarized
+set background=dark
+set colorcolumn=80,100
+set modeline
+set number
+set ruler
+set showcmd
+syntax on
 
-set wildmenu
-set wildignore="*.o,*~,*.pyc,*.obj
-
+"" Behavior
+set autoindent
+set expandtab
+set formatoptions=c,q,r,t
+set hlsearch
+set ignorecase
+set incsearch
 set magic
 set mat=2
-set showmode
-set tabstop=4
 set shiftwidth=4
-set expandtab
-set smarttab
 set showmatch
-set hlsearch
-set incsearch
-set ignorecase
+set showmode
 set smartcase
-set autoindent
-set textwidth=99
-set formatoptions=c,q,r,t
-set splitright
+set smarttab
 set splitbelow
-
-set noerrorbells
-set novisualbell
-set t_vb=
-set tm=500
+set splitright
+set tabstop=4
+set textwidth=99
 
 " Font
 if has("gui_running")
@@ -86,7 +71,28 @@ if has("gui_running")
     endif
 endif
 
-" NERDTree
+"" History
+set autoread
+set history=1000
+set undodir=$HOME/.vim/undo/
+set undofile
+set undolevels=1000
+set undoreload=10000
+set updatecount=250
+
+"" Sound
+set noerrorbells
+set novisualbell
+set t_vb=
+set tm=500
+
+"" Wild
+set wildignore="*.o,*~,*.pyc,*.obj
+set wildmenu
+
+" Plugin Settings
+
+"" NERDTree
 map § :NERDTreeToggle<return>
 let NERDTreeIgnore=['\.o$', '\~$']
 if has("gui_running")
@@ -96,10 +102,10 @@ if has("gui_running")
     autocmd VIMEnter * wincmd p
 endif
 
-" Airline
+"" Airline
 let g:airline_powerline_fonts = 1
 
-" Syntactic
+"" Syntactic
 let g:syntastic_cpp_compiler = "clang++"
 let g:syntastic_cpp_compiler_options = " -std=c++14 -stdlib=libc++ -Wall -Wpedantic -Wextra"
 let g:syntastic_cpp_check_header = 1
@@ -109,9 +115,9 @@ let g:syntastic_c_compiler_options = " -std=c11 -Wall -Wpedantic -Wextra"
 let g:syntastic_c_check_header = 1
 let g:syntastic_c_checkers = ['clang_check']
 
-" Clang Format
+"" Clang Format
 map ½ :ClangFormat<cr>
 let g:clang_format#detect_style_file = 1
 
-" Rust Format
+"" Rust Format
 let g:rustfmt_autosave = 1
