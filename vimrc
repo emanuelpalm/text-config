@@ -20,6 +20,7 @@ Plugin 'christoomey/vim-tmux-navigator.git'
 Plugin 'rhysd/vim-clang-format.git'
 
 " Color themes.
+Plugin 'altercation/vim-colors-solarized.git'
 Plugin 'tomasr/molokai.git'
 
 " Language support.
@@ -48,7 +49,7 @@ set ruler
 set colorcolumn=80,100
 
 syntax on
-colorscheme molokai
+colorscheme solarized
 
 set wildmenu
 set wildignore="*.o,*~,*.pyc,*.obj
@@ -97,12 +98,6 @@ endif
 
 " Airline
 let g:airline_powerline_fonts = 1
-
-" Molokai
-if !has("gui_running")
-    let g:rehash256 = 1 " Molokai theme 256 color adjustment.
-    set t_Co=256
-endif
 
 " Syntactic
 let g:syntastic_cpp_compiler = "clang++"
