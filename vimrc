@@ -101,7 +101,14 @@ let g:airline_powerline_fonts = 1
 
 " Syntactic
 let g:syntastic_cpp_compiler = "clang++"
-let g:syntastic_cpp_compiler_options = "-std=c++11 -stdlib=libc++ -Wall -Wpedantic -Wextra"
+let g:syntastic_cpp_compiler_options = " -std=c++14 -stdlib=libc++ -Wall -Wpedantic -Wextra"
+let g:syntastic_cpp_check_header = 1
+let g:syntastic_cpp_checkers = ['clang_check']
 let g:syntastic_c_compiler = "clang"
-let g:syntastic_c_compiler_options = "-std=c11 -Wall -Wpedantic -Wextra"
+let g:syntastic_c_compiler_options = " -std=c11 -Wall -Wpedantic -Wextra"
+let g:syntastic_c_check_header = 1
+let g:syntastic_c_checkers = ['clang_check']
 
+" Clang Format
+map ½ :ClangFormat<cr>
+let g:clang_format#detect_style_file = 1
