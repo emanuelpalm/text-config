@@ -9,7 +9,8 @@ Plugin 'gmarik/Vundle.vim.git'
 
 " Productivity.
 Plugin 'airblade/vim-gitgutter.git'
-Plugin 'bling/vim-airline.git'
+Plugin 'vim-airline/vim-airline.git'
+Plugin 'vim-airline/vim-airline-themes.git'
 Plugin 'scrooloose/nerdtree.git'
 Plugin 'terryma/vim-multiple-cursors.git'
 Plugin 'kien/ctrlp.vim.git'
