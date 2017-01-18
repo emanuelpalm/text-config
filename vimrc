@@ -112,3 +112,6 @@ let g:syntastic_c_checkers = ['clang_check']
 " Clang Format
 map ½ :ClangFormat<cr>
 let g:clang_format#detect_style_file = 1
+
+" Rust Format
+let g:rustfmt_autosave = 1
