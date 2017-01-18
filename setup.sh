@@ -6,6 +6,7 @@ function main {
     install_packages
     install_configurations_from "$2"
     configure_packages
+    create_directories
 
     report "Done."
 }
@@ -113,6 +114,11 @@ function configure_packages {
     # Powerline fonts.
     cd "$HOME/.powerline-fonts" && ./install.sh
 
+}
+
+# Creates important directories.
+function create_directories {
+    mkdir -p "$HOME/.vim/undo"
 }
 
 SOURCE_REPO='https://github.com/emanuelpalm/text-config.git'
