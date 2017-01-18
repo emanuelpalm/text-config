@@ -22,10 +22,10 @@ Plugin 'rhysd/vim-clang-format.git'
 " Color themes.
 Plugin 'tomasr/molokai.git'
 
-" Syntax highlightning.
+" Language support.
 Plugin 'plasticboy/vim-markdown.git'
 Plugin 'rodjek/vim-puppet.git'
-Plugin 'wting/rust.vim.git'
+Plugin 'rust-lang/rust.vim'
 
 call vundle#end()
 filetype plugin indent on
