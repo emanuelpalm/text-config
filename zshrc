@@ -26,6 +26,7 @@ alias tmux="tmux -2"
 
 unsetopt autocd
 bindkey -v
+bindkey '^R' history-incremental-search-backward
 zstyle :compinstall filename '/home/emanuel/.zshrc'
 autoload -Uz compinit
 compinit
